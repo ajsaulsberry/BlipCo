@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using BlipCo.Models;
 
@@ -17,6 +14,9 @@ namespace BlipCo.Controllers
             var user = new User()
             {
                 UserID = Guid.NewGuid().ToString()
+                // UserID is passed to the Razor form as a string so it can be conveniently passed back on submit.
+                // GUID's would be coerced to strings when the form is rendered, but would not be converted from
+                // strings to GUID's on the POST action.
             };
 
             return View(user);
@@ -31,96 +31,51 @@ namespace BlipCo.Controllers
                 switch (answer)
                 {
                     case "Accept":
-                        user.Decided = DateTime.Now;
                         user.TermsStatus = "Accepted";
                         break;
                     case "Decline":
-                        user.Decided = DateTime.Now;
                         user.TermsStatus = "Declined";
                         break;
                     case "Defer":
-                        user.Reminder = DateTime.Now.AddDays(10);
                         user.TermsStatus = "Deferred";
                         break;
                     default:
-                        user.Decided = DateTime.Now;
                         user.TermsStatus = "Deferred";
                         break;
                 }
+
+                if (user.TermsStatus == "Accepted")
+                {
+                    user.AcceptedOn = DateTime.Now;
+                }
+
+                // Code to save the values for user.Username and user.AcceptedOn to permanent storage could go here.
             }
             return View(user);
         }
 
-        // GET: User/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: User/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: User/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult TermsAccept([Bind(Include = "UserID,Username")] User user)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                user.AcceptedOn = DateTime.Now;
+                user.TermsStatus = "Accepted";
             }
-            catch
-            {
-                return View();
-            }
+            return View("Index", user);
         }
 
-        // GET: User/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: User/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult TermsDecline([Bind(Include = "UserID,Username")] User user)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                user.TermsStatus = "Declined";
             }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: User/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: User/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+           return RedirectToAction("Index", "Home");
         }
     }
 }

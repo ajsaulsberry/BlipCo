@@ -1,10 +1,10 @@
 ﻿@model BlipCo.Models.User
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "User Terms";
 }
 
-<h2>Index</h2>
+<h2>User Terms</h2>
 
 
 @using (Html.BeginForm()) 
@@ -18,8 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.UserID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
 
@@ -34,10 +33,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TermsStatus, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TermsStatus, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TermsStatus, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.TermsStatus, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
             </div>
         </div>
+
+        <h3>Multiple buttons with the same name</h3>
+        <p>
+            The buttons below use the default HttpPost controller action for this page.
+        </p>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -46,14 +49,22 @@
                 <input type="submit" name="answer" value="Defer" class="btn btn-warning" />
             </div>
         </div>
+
+        <h3>Multiple buttons using HTML5 properties and custom controller actions</h3>
+        <p>
+            The buttons below take advantage of the HTML5 formaction and formmethod attributes of the input tag to call
+            custom controller actions.
+        </p>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" name="response" value="Accept" formaction=@Url.Action("TermsAccept") formmethod="post" class="btn btn-primary" />
+                <input type="submit" name="response" value="Decline" formaction=@Url.Action("TermsDecline") formmethod="post" class="btn btn-default" />
+            </div>
+        </div>
+
     </div>
-
-
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
