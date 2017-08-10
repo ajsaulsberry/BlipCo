@@ -4,7 +4,7 @@ using BlipCo.Models;
 
 namespace BlipCo.Controllers
 {
-    public class UserController : Controller
+    public class ButtonsController : Controller
     {
         // GET: User
         public ActionResult Index()
@@ -31,6 +31,7 @@ namespace BlipCo.Controllers
                 switch (answer)
                 {
                     case "Accept":
+                        user.TermsAcceptedOn = DateTime.Now;
                         user.TermsStatus = "Accepted";
                         break;
                     case "Decline":
@@ -44,11 +45,6 @@ namespace BlipCo.Controllers
                         break;
                 }
 
-                if (user.TermsStatus == "Accepted")
-                {
-                    user.AcceptedOn = DateTime.Now;
-                }
-
                 // Code to save the values for user.Username and user.AcceptedOn to permanent storage could go here.
             }
             return View(user);
@@ -60,7 +56,7 @@ namespace BlipCo.Controllers
         {
             if (ModelState.IsValid)
             {
-                user.AcceptedOn = DateTime.Now;
+                user.TermsAcceptedOn = DateTime.Now;
                 user.TermsStatus = "Accepted";
             }
             return View("Index", user);

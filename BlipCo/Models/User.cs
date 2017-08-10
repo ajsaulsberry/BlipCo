@@ -10,6 +10,6 @@ namespace BlipCo.Models
 
         public string TermsStatus { get; set; }
 
-        public DateTime AcceptedOn { get; set; }
+        public DateTime? TermsAcceptedOn { get; set; }
     }
 }
