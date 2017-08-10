@@ -4,7 +4,7 @@ namespace BlipCo.Models
 {
     public class User
     {
-        public Guid UserID { get; set; }
+        public string UserID { get; set; }
 
         public string Username { get; set; }
 
