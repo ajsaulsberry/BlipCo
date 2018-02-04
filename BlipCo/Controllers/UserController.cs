@@ -24,26 +24,31 @@ namespace BlipCo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index([Bind(Include = "UserID,Username")] User user, string answer)
+        public ActionResult Index([Bind(Include = "UserID,Username")] User user, float? answer)
         {
-            if (ModelState.IsValid && !String.IsNullOrWhiteSpace(answer))
+            if (ModelState.IsValid && answer.HasValue)
             {
-                switch (answer)
+                if (answer > 2)
                 {
-                    case "Accept":
-                        user.TermsAcceptedOn = DateTime.Now;
-                        user.TermsStatus = "Accepted";
-                        break;
-                    case "Decline":
-                        user.TermsStatus = "Declined";
-                        break;
-                    case "Defer":
-                        user.TermsStatus = "Deferred";
-                        break;
-                    default:
-                        user.TermsStatus = "Deferred";
-                        break;
+                    user.TermsStatus = "not accepted";
                 }
+
+                //switch (answer)
+                //{
+                //    case 1.1f:
+                //        user.TermsAcceptedOn = DateTime.Now;
+                //        user.TermsStatus = "Accepted";
+                //        break;
+                //    case 2.2f:
+                //        user.TermsStatus = "Declined";
+                //        break;
+                //    case 3.3f:
+                //        user.TermsStatus = "Deferred";
+                //        break;
+                //    default:
+                //        user.TermsStatus = "Deferred";
+                //        break;
+                //}
 
                 // Code to save the values for user.Username and user.AcceptedOn to permanent storage could go here.
             }
@@ -64,14 +69,14 @@ namespace BlipCo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult TermsDecline([Bind(Include = "UserID,Username")] User user)
+        public ActionResult TermsDecline()
         {
             if (ModelState.IsValid)
             {
-                user.TermsStatus = "Declined";
+                //user.TermsStatus = "Declined"; Controller actions matching `formaction` attribute values
             }
 
-           return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
