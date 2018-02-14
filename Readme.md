@@ -31,3 +31,7 @@
 1. Run the application.
 1. Press **Buttons** on the home page.
 1. Set breakpoints in **UserController.cs to experiment.
+
+## License
+
+This project is licensed under the terms of the MIT license.
