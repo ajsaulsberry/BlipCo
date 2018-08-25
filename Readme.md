@@ -1,10 +1,10 @@
 # BlipCo
 
-**_BlipCo_** is an ASP.NET MVC case study solution created to accompany a guide in the **PluralSight** [**HackGuides()**](https://www.pluralsight.com/guides/microsoft-net) collection for Microsoft .NET technologies.
+**_BlipCo_** is an ASP.NET MVC case study solution created to accompany a guide in the **PluralSight** [**PluralSight Guides**](https://www.pluralsight.com/guides) collection for Microsoft .NET technologies.
 
 ## PluralSight Hack.Guides()
 
-[ASP.NET MVC - Using multiple submit buttons with default model binding and controller actions](https://www.pluralsight.com/guides/microsoft-net/asp-net-mvc-using-multiple-submit-buttons-with-default-model-binding-and-controller-actions) - This guide demonstrates how to use ASP.NET MVC to easily create HTML pages with multiple submit buttons with minimal code by leveraging MVC default model binding and controller actions. No JavaScript is required for these techniques.
+[ASP.NET MVC - Using multiple submit buttons with default model binding and controller actions](https://www.pluralsight.com/guides/asp-net-mvc-using-multiple-submit-buttons-with-default-model-binding-and-controller-actions) - This guide demonstrates how to use ASP.NET MVC to easily create HTML pages with multiple submit buttons with minimal code by leveraging MVC default model binding and controller actions. No JavaScript is required for these techniques.
 
 *Notice: PluralSight and the author(s) disclaim any liability for errors or omissions in this code. See the [Disclaimer of Warranties and Limitation of Liability](#disclaimer-of-warranties-and-limitation-of-liability) for complete information.*
 
