@@ -1,6 +1,6 @@
 # BlipCo
 
-**_BlipCo_** is an ASP.NET MVC case study solution created to accompany a guide in the **PluralSight** [**PluralSight Guides**](https://www.pluralsight.com/guides) collection for Microsoft .NET technologies.
+**_BlipCo_** is an ASP.NET MVC case study solution created to accompany a guide in the [**PluralSight Guides**](https://www.pluralsight.com/guides) collection for Microsoft .NET technologies.
 
 ## PluralSight Hack.Guides()
 
